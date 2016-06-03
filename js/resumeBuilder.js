@@ -5,13 +5,13 @@ var bio = {
         "mobile" : "650-924-8286",
         "email" : "g.ilchenco@gmail.com",
         "github": "https://github.com/galina7",
+        "twitter": "fakeTwitter",
         "location" : "San Francisco, USA",
         "linkedin": "https://www.linkedin.com/in/galina-ilchenco-b3a57a15"
     },
-    "bioPic" : "images/me.JPG",
-    "skills" : ["HTML", "CSS", "jQuery", "Javascript", "Selenium", "Appium"],
     "wlcomeMessage" : "Be who you are and say what you feel because those who mind don't matter and those who matter don't mind. -- Dr.Suess",
-
+    "skills" : ["HTML", "CSS", "jQuery", "Javascript", "Selenium", "Appium"],
+    "bioPic" : "images/me.JPG",
     displayBio: function() {
         var formattedImg = HTMLbioPic.replace("%data%", bio.bioPic);
         var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -19,7 +19,6 @@ var bio = {
         var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.wlcomeMessage);
         var formattedHTMLgithub = HTMLgithub.replace("%data%", bio.contacts.github).replace("%url%", bio.contacts.github);
         var formattedHTMLemail = HTMLemail.replace("%data%", bio.contacts.email).replace("%url%", "mailto:g.ilchenco@gmail.com");
-        var formattedHTMLlocation = HTMLlocation.replace("%data%", bio.contacts.location);
         var formattedLinkedIn = HTMLcontactGeneric.replace("%contact%","linkedin").replace("%data%", bio.contacts.linkedin).replace("%url%", bio.contacts.linkedin);
 
         $("#header").prepend(formattedImg).prepend(formattedRole).prepend(formattedName);
@@ -29,12 +28,69 @@ var bio = {
         for(skill in bio.skills) {
             var formattedSkills = HTMLskills.replace("%data%",bio.skills[skill]);
             $("#skills").append(formattedSkills);
-        };
+        }
 
         $("#footerContacts").append(formattedHTMLgithub, formattedHTMLemail, formattedLinkedIn);
     }
 };
 bio.displayBio();
+
+var education = {
+    "schools": [
+    {
+        "name": "College of NYIT",
+        "location": "New York, NY",
+        "degree": "MBA",
+        "majors": ["fake1", "fake2"],
+        "dates": "2005-2007",
+        "url": "http://www.nyit.edu/"
+    },
+    {
+        "name": "Diablo Valley College",
+        "location": "Pleasant Hill, CA",
+        "degree": "CS",
+        "majors": ["fake1", "fake2"],
+        "dates": "1992-1994",
+        "url": "http://www.dvc.edu/"
+    },
+    {
+        "name": "State Art College",
+        "location": "Minsk, Belarus",
+        "degree": "Graphic Design",
+        "majors": ["fake1", "fake2"],
+        "dates": "1980-1985",
+        "url": "http://bdam.by/"
+    }],
+
+    "onlineCourses": [
+    {
+        "title": "Front-End Developer",
+        "school": "Udacity",
+        "date": "March-May 2016",
+        "url": "https://www.udacity.com/"
+    }],
+    displayEducation: function() {
+        $("#education").append(HTMLschoolStart);
+        $("#education").append(HTMLonlineClassesStart);
+
+        for (school in education.schools){
+            var formattedHTMLschoolName = HTMLschoolName.replace("%url%",education.schools[school].url).replace("%data%", education.schools[school].name);
+            var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+            var formattedHTMLschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+            $(".education-entry:last").append(formattedHTMLschoolName, formattedHTMLschoolDegree, formattedHTMLschoolLocation);
+        }
+
+        for (course in education.onlineCourses){
+            $(".courses-entry ").append(HTMLonlineClasses);
+            var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[course].title);
+            var formattedHTMLonlineSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[course].school);
+            var formattedHTMLonlineDates = HTMLonlineDates.replace("%data%",education.onlineCourses[course].year);
+            var formattedHTMLonlineURL = HTMLonlineURL.replace("%data%",education.onlineCourses[course].url).replace("%url%",education.onlineCourses[course].url);
+            $(".courses-entry:last").append(formattedHTMLonlineTitle, formattedHTMLonlineSchool, formattedHTMLonlineDates,formattedHTMLonlineURL);
+        }
+    }
+};
+education.displayEducation();
 
 var work = {
     "jobs": [
@@ -70,7 +126,6 @@ var work = {
         "description": "Documented, designed and developed test plans for platform functionality of Android based wireless consumer devices (Kindle Fire). Analyzed business requirements, software requirement specifications to create test cases for manual and automated testing. . Actively working with the core platform team to ensure the device quality and core API functionality.. Used ADB and DDMS to analyze defects, collect the logs and various debugging purposes.",
         "url": "http://lab126.com/"
     }],
-
     displayWork: function() {
        for (var job in work.jobs) {
             $("#workExperience").append(HTMLworkStart);
@@ -98,7 +153,6 @@ var projects = {
     //http://traverseworld.com/Takachiho/Takachiho-Gorge.html
     //http://www.appszoom.com/android_applications/photography/most-beautiful-waterfall-hd_ixmwd.html
     }],
-
     displayProjects: function() {
         for (project in projects.project) {
             $("#projects").append(HTMLprojectStart);
@@ -118,60 +172,7 @@ var projects = {
 };
 projects.displayProjects();
 
-var education = {
-    "schools": [
-    {
-        "name": "College of NYIT",
-        "location": "New York, NY",
-        "degree": "MBA",
-        "year": 2007,
-        "url": "http://www.nyit.edu/"
-    },
-    {
-        "name": "Diablo Valley College",
-        "location": "Pleasant Hill, CA",
-        "degree": "CS",
-        "year": 1994,
-        "url": "http://www.dvc.edu/"
-    },
-    {
-        "name": "State Art College",
-        "location": "Minsk, Belarus",
-        "degree": "Graphic Design",
-        "year": 1985,
-        "url": "http://bdam.by/"
-    }],
 
-    "onlineCourses": [
-    {
-        "title": "Front-End Developer",
-        "school": "Udacity",
-        "year": 2016,
-        "url": "https://www.udacity.com/"
-    }],
-
-    displayEducation: function() {
-        $("#education").append(HTMLschoolStart);
-        $("#education").append(HTMLonlineClassesStart);
-
-        for (school in education.schools){
-            var formattedHTMLschoolName = HTMLschoolName.replace("%url%",education.schools[school].url).replace("%data%", education.schools[school].name);
-            var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-            var formattedHTMLschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
-            $(".education-entry:last").append(formattedHTMLschoolName, formattedHTMLschoolDegree, formattedHTMLschoolLocation);
-        }
-
-        for (course in education.onlineCourses){
-            $(".courses-entry ").append(HTMLonlineClasses);
-            var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[course].title);
-            var formattedHTMLonlineSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[course].school);
-            var formattedHTMLonlineDates = HTMLonlineDates.replace("%data%",education.onlineCourses[course].year);
-            var formattedHTMLonlineURL = HTMLonlineURL.replace("%data%",education.onlineCourses[course].url).replace("%url%",education.onlineCourses[course].url);
-            $(".courses-entry:last").append(formattedHTMLonlineTitle, formattedHTMLonlineSchool, formattedHTMLonlineDates,formattedHTMLonlineURL);
-        }
-    }
-};
-education.displayEducation();
 
 
 
