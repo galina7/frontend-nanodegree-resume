@@ -12,7 +12,8 @@ var bio = {
     "wlcomeMessage" : "Be who you are and say what you feel because those who mind don't matter and those who matter don't mind. -- Dr.Suess",
     "skills" : ["HTML", "CSS", "jQuery", "Javascript", "Selenium", "Appium"],
     "bioPic" : "images/me.JPG",
-    displayBio: function() {
+
+    display: function() {
         var formattedImg = HTMLbioPic.replace("%data%", bio.bioPic);
         var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
         var formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -25,15 +26,15 @@ var bio = {
         $("#header").append(HTMLskillsStart);
         $("#header").append(formattedHTMLwelcomeMsg);
 
-        for(skill in bio.skills) {
-            var formattedSkills = HTMLskills.replace("%data%",bio.skills[skill]);
+        bio.skills.forEach(function(skill) {
+            var formattedSkills = HTMLskills.replace("%data%",skill);
             $("#skills").append(formattedSkills);
-        }
+        });
 
         $("#footerContacts").append(formattedHTMLgithub, formattedHTMLemail, formattedLinkedIn);
     }
 };
-bio.displayBio();
+bio.display();
 
 var education = {
     "schools": [
@@ -66,31 +67,32 @@ var education = {
     {
         "title": "Front-End Developer",
         "school": "Udacity",
-        "date": "March-May 2016",
+        "date": "March-August 2016",
         "url": "https://www.udacity.com/"
     }],
-    displayEducation: function() {
+
+    display: function() {
         $("#education").append(HTMLschoolStart);
         $("#education").append(HTMLonlineClassesStart);
 
-        for (school in education.schools){
-            var formattedHTMLschoolName = HTMLschoolName.replace("%url%",education.schools[school].url).replace("%data%", education.schools[school].name);
-            var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-            var formattedHTMLschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+        education.schools.forEach(function(school){
+            var formattedHTMLschoolName = HTMLschoolName.replace("%url%", school.url).replace("%data%", school.name);
+            var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
+            var formattedHTMLschoolLocation = HTMLschoolLocation.replace("%data%", school.location);
             $(".education-entry:last").append(formattedHTMLschoolName, formattedHTMLschoolDegree, formattedHTMLschoolLocation);
-        }
+        });
 
-        for (course in education.onlineCourses){
-            $(".courses-entry ").append(HTMLonlineClasses);
-            var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[course].title);
-            var formattedHTMLonlineSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[course].school);
-            var formattedHTMLonlineDates = HTMLonlineDates.replace("%data%",education.onlineCourses[course].year);
-            var formattedHTMLonlineURL = HTMLonlineURL.replace("%data%",education.onlineCourses[course].url).replace("%url%",education.onlineCourses[course].url);
+        education.onlineCourses.forEach(function(course){
+            $(".courses-entry").append(HTMLonlineClasses);
+            var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%", course.title);
+            var formattedHTMLonlineSchool = HTMLonlineSchool.replace("%data%", course.school);
+            var formattedHTMLonlineDates = HTMLonlineDates.replace("%data%", course.date);
+            var formattedHTMLonlineURL = HTMLonlineURL.replace("%data%", course.url).replace("%url%", course.url);
             $(".courses-entry:last").append(formattedHTMLonlineTitle, formattedHTMLonlineSchool, formattedHTMLonlineDates,formattedHTMLonlineURL);
-        }
+        });
     }
 };
-education.displayEducation();
+education.display();
 
 var work = {
     "jobs": [
@@ -126,23 +128,24 @@ var work = {
         "description": "Documented, designed and developed test plans for platform functionality of Android based wireless consumer devices (Kindle Fire). Analyzed business requirements, software requirement specifications to create test cases for manual and automated testing. . Actively working with the core platform team to ensure the device quality and core API functionality.. Used ADB and DDMS to analyze defects, collect the logs and various debugging purposes.",
         "url": "http://lab126.com/"
     }],
-    displayWork: function() {
-       for (var job in work.jobs) {
+
+    display: function() {
+        work.jobs.forEach(function(job) {
             $("#workExperience").append(HTMLworkStart);
-            var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer).replace("%url%", work.jobs[job].url);
-            var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+            var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer).replace("%url%", job.url);
+            var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
             var fromattedEmplTitle = formattedEmployer + "  " + formattedTitle;
-            var formattedDate = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-            var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-            var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+            var formattedDate = HTMLworkDates.replace("%data%", job.dates);
+            var formattedLocation = HTMLworkLocation.replace("%data%", job.location);
+            var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
             $(".work-entry:last").append(fromattedEmplTitle, formattedDate, formattedLocation, formattedDescription);
-        }
+        });
     }
 };
-work.displayWork();
+work.display();
 
 var projects = {
-    "project": [
+    "projects": [
     {
     "title": "Animal Trading Card",
     "dates": "2016",
@@ -153,24 +156,25 @@ var projects = {
     //http://traverseworld.com/Takachiho/Takachiho-Gorge.html
     //http://www.appszoom.com/android_applications/photography/most-beautiful-waterfall-hd_ixmwd.html
     }],
-    displayProjects: function() {
-        for (project in projects.project) {
+
+    display: function() {
+        projects.projects.forEach(function(project) {
             $("#projects").append(HTMLprojectStart);
-            var formattedHTMLprojectTitle = HTMLprojectTitle.replace("%data%", projects.project[project].title);
-            var formattedHTMLprojectDates = HTMLprojectDates.replace("%data%", projects.project[project].dates);
-            var formattedHTMLprojectDescription = HTMLprojectDescription.replace("%data%", projects.project[project].description);
+            var formattedHTMLprojectTitle = HTMLprojectTitle.replace("%data%", project.title);
+            var formattedHTMLprojectDates = HTMLprojectDates.replace("%data%", project.dates);
+            var formattedHTMLprojectDescription = HTMLprojectDescription.replace("%data%", project.description);
             $(".project-entry:last").append(formattedHTMLprojectTitle, formattedHTMLprojectDates, formattedHTMLprojectDescription);
 
-            if (projects.project[project].images.length > 0){
-                for (image in projects.project[project].images) {
-                     var formattedHTMLprojectImage = HTMLprojectImage.replace("%data%", projects.project[project].images[image]);
+            if (project.images.length > 0){
+                project.images.forEach(function(img) {
+                    var formattedHTMLprojectImage = HTMLprojectImage.replace("%data%", img);
                      $(".project-entry:last").append(formattedHTMLprojectImage);
-                }
+                });
             }
-        }
+        });
     }
 };
-projects.displayProjects();
+projects.display();
 
 
 
@@ -183,10 +187,10 @@ projects.displayProjects();
 $("#name").hover(
     function() {
         var n = $(this).text();
-        names = n.split(" ");
+        var names = n.split(" ");
         names[1] = names[1].toUpperCase();
         names[0] = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
-        finalName = names.join(" ");
+        var finalName = names.join(" ");
         $("#name").text(finalName);
     },
     function() {
