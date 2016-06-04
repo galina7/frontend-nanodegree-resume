@@ -100,7 +100,7 @@ var work = {
         "employer": "Financial Freedom Network",
         "title": "QA Engineer",
         "location": "San Mateo, CA",
-        "dates": "Marth 2016 - Present",
+        "dates": "March 2016 - Present",
         "description": "",
         "url": "http://www.freedomdebtrelief.com/"
     },
@@ -147,7 +147,7 @@ work.display();
 var projects = {
     "projects": [
     {
-    "title": "Animal Trading Card",
+    "title": "Waterfalls Trading Card",
     "dates": "2016",
     "description": "Udacity CSS project",
     "images": ["images/img1.jpg", "images/img2.jpg", "images/img3.jpg", "images/img4.jpg"],
