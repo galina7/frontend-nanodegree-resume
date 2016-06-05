@@ -9,15 +9,15 @@ var bio = {
         "location" : "San Francisco, USA",
         "linkedin": "https://www.linkedin.com/in/galina-ilchenco-b3a57a15"
     },
-    "wlcomeMessage" : "Be who you are and say what you feel because those who mind don't matter and those who matter don't mind. -- Dr.Suess",
+    "welcomeMessage" : "Be who you are and say what you feel because those who mind don't matter and those who matter don't mind. -- Dr.Suess",
     "skills" : ["HTML", "CSS", "jQuery", "Javascript", "Selenium", "Appium"],
-    "bioPic" : "images/me.JPG",
+    "biopic" : "images/me.JPG",
 
     display: function() {
-        var formattedImg = HTMLbioPic.replace("%data%", bio.bioPic);
+        var formattedImg = HTMLbioPic.replace("%data%", bio.biopic);
         var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
         var formattedName = HTMLheaderName.replace("%data%", bio.name);
-        var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.wlcomeMessage);
+        var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
         var formattedHTMLgithub = HTMLgithub.replace("%data%", bio.contacts.github).replace("%url%", bio.contacts.github);
         var formattedHTMLemail = HTMLemail.replace("%data%", bio.contacts.email).replace("%url%", "mailto:g.ilchenco@gmail.com");
         var formattedLinkedIn = HTMLcontactGeneric.replace("%contact%","linkedin").replace("%data%", bio.contacts.linkedin).replace("%url%", bio.contacts.linkedin);
