@@ -9,7 +9,8 @@ var bio = {
         "location" : "San Francisco, USA",
         "linkedin": "https://www.linkedin.com/in/galina-ilchenco-b3a57a15"
     },
-    "welcomeMessage" : "Be who you are and say what you feel because those who mind don't matter and those who matter don't mind. -- Dr.Suess",
+    "welcomeMessage" : "Be who you are and say what you feel because " +
+        "those who mind don't matter and those who matter don't mind. -- Dr.Suess",
     "skills" : ["HTML", "CSS", "jQuery", "Javascript", "Selenium", "Appium"],
     "biopic" : "images/me.JPG",
 
@@ -78,8 +79,10 @@ var education = {
         education.schools.forEach(function(school){
             var formattedHTMLschoolName = HTMLschoolName.replace("%url%", school.url).replace("%data%", school.name);
             var formattedHTMLschoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
-            var formattedHTMLschoolLocation = HTMLschoolLocation.replace("%data%", school.location);
-            $(".education-entry:last").append(formattedHTMLschoolName, formattedHTMLschoolDegree, formattedHTMLschoolLocation);
+            var formattedHTMLschoolDates = HTMLschoolDates.replace("%data%", school.dates);
+            var formattedHTMLschoolMajor = HTMLschoolMajor.replace("%data%", school.majors);
+
+            $(".education-entry:last").append(formattedHTMLschoolName+formattedHTMLschoolDegree, formattedHTMLschoolDates, formattedHTMLschoolMajor);
         });
 
         education.onlineCourses.forEach(function(course){
@@ -87,7 +90,7 @@ var education = {
             var formattedHTMLonlineTitle = HTMLonlineTitle.replace("%data%", course.title);
             var formattedHTMLonlineSchool = HTMLonlineSchool.replace("%data%", course.school);
             var formattedHTMLonlineDates = HTMLonlineDates.replace("%data%", course.date);
-            var formattedHTMLonlineURL = HTMLonlineURL.replace("%data%", course.url).replace("%url%", course.url);
+            var formattedHTMLonlineURL = HTMLonlineURL.replace("%data%", course.url).replace("%url%", course.url)
             $(".courses-entry:last").append(formattedHTMLonlineTitle, formattedHTMLonlineSchool, formattedHTMLonlineDates,formattedHTMLonlineURL);
         });
     }
